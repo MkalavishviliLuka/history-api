@@ -2,7 +2,18 @@ var renderer, scene, camera, particle;
 var animate;
 
 window.onload = function () {
-    renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
+    if (location.pathname === '/index.html' || location.pathname === '/' || location.pathname === '/ap/') {
+        renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
+    }
+    if (location.pathname === '/about') {
+        renderParent({ numeration: 1, iconClass: 1 }, { numeration: 2, iconClass: 2 });
+    }
+    if (location.pathname === '/portfolio') {
+        renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
+    }
+    if (location.pathname === '/contact') {
+        renderParent({ numeration: 3, iconClass: 3 }, null);
+    }
 };
 
 var renderParent = (currPage, nextPage) => {
@@ -11,6 +22,20 @@ var renderParent = (currPage, nextPage) => {
         setTimeout(() => {
             document.querySelector('.page-container').remove();
         }, 300);
+    }
+
+
+    if (currPage.numeration === 0) {
+        history.pushState(nextPage, '', '/');
+    }
+    if (currPage.numeration === 1) {
+        history.pushState(nextPage, '', '/about');
+    }
+    if (currPage.numeration === 2) {
+        history.pushState(nextPage, '', '/portfolio');
+    }
+    if (currPage.numeration === 3) {
+        history.pushState(nextPage, '', '/contact');
     }
 
 
