@@ -2,7 +2,7 @@ var renderer, scene, camera, particle;
 var animate;
 
 window.onload = function () {
-    if (location.pathname === '/index.html' || location.pathname === '/') {
+    if (location.pathname === '/index.html' || location.pathname === '/' || location.pathname === '/ap/') {
         renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
     }
     if (location.pathname === '/about') {
