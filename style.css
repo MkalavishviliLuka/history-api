@@ -1,0 +1,88 @@
+html {
+    width: 100%;
+    min-height: 100vh;
+    background: #AAA1C8;
+    background: -moz-linear-gradient(top, #AAA1C8 0%, #967AA1 100%);
+    background: -webkit-linear-gradient(top, #AAA1C8 0%, #967AA1 100%);
+    background: linear-gradient(to bottom, #AAA1C8 0%, #967AA1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AAA1C8', endColorstr='#967AA1', GradientType=0);
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root {
+    --tc: #192A51;
+    --bg1: #AAA1C8;
+    --bg2: #967AA1;
+    --rc: #D5C6E0;
+    --sc: #F5E6E8;
+}
+
+i {
+    font-weight: bold;
+    font-size: calc(20px + 2.5vw);
+    cursor: pointer;
+}
+
+.back-link {
+    font-size: calc(20px + 1.8vw);
+    transform: rotate(180deg);
+    left: 20px;
+    top: 20px;
+    position: absolute;
+}
+
+
+.page-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.1);
+    transition: 0.3s;
+    min-height: 100vh;
+    width: 100vw;
+    color: var(--tc);
+}
+
+.page-container h1 {
+    font-size: calc(20px + 3.5vw);
+}
+
+.page-container canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1;
+}
+
+.scale-up {
+    transform: scale(1);
+}
+
+.scale-fade {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* about */
+
+.comics-container {
+    font-size: calc(20px + 1.8vw);
+    font-weight: bold;
+    padding-bottom: 20px;
+}
