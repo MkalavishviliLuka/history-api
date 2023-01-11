@@ -2,18 +2,7 @@ var renderer, scene, camera, particle;
 var animate;
 
 window.onload = function () {
-    if (location.pathname === '/index.html' || location.pathname === '/' || location.pathname === '/ap/') {
-        renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
-    }
-    if (location.pathname === '/about.html') {
-        renderParent({ numeration: 1, iconClass: 1 }, { numeration: 2, iconClass: 2 });
-    }
-    if (location.pathname === '/portfolio.html') {
-        renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
-    }
-    if (location.pathname === '/contact.html') {
-        renderParent({ numeration: 3, iconClass: 3 }, null);
-    }
+    renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
 };
 
 var renderParent = (currPage, nextPage) => {
@@ -25,32 +14,19 @@ var renderParent = (currPage, nextPage) => {
     }
 
 
-    if (currPage.numeration === 0) {
-        history.pushState(nextPage, '', '/');
-    }
-    if (currPage.numeration === 1) {
-        history.pushState(nextPage, '', '/about.html');
-    }
-    if (currPage.numeration === 2) {
-        history.pushState(nextPage, '', '/portfolio.html');
-    }
-    if (currPage.numeration === 3) {
-        history.pushState(nextPage, '', '/contact.html');
-    }
-
-
     let parent = document.createElement('div');
     parent.style.pointerEvents = 'none';
     setTimeout(() => {
         parent.style.pointerEvents = 'unset';
     }, 300);
     parent.className = 'page-container';
-    if (currPage.numeration > 0) parent.classList.add('secondary-page');
     parent.setAttribute('id', `${currPage.numeration}-page`);
 
     let icon = document.createElement('i');
+    // if (currPage.iconClass === 0) {
     icon.className = 'fa-solid fa-door-open page-link';
     parent.appendChild(icon);
+    // }
     icon.onclick = () => {
         if (nextPage === null || nextPage.numeration > 3) return;
         renderParent(nextPage, { numeration: nextPage.numeration + 1, iconClass: nextPage.iconClass + 1 });
@@ -84,8 +60,9 @@ var renderParent = (currPage, nextPage) => {
         loadHomepage(parent);
         animate = () => {
             requestAnimationFrame(animate);
-            particle.rotation.y -= 0.0025;
+            particle.rotation.y -= 0.0010;
             renderer.clear();
+
             renderer.render(scene, camera);
         };
         animate();
@@ -122,7 +99,7 @@ function loadHomepage(parent) {
 
     scene.add(particle);
 
-    var geometry = new THREE.TetrahedronGeometry(5, 0);
+    var geometry = new THREE.TetrahedronGeometry(2, 0);
 
     var material = new THREE.MeshPhongMaterial({
         color: 0x967AA1,
@@ -161,17 +138,17 @@ function loadAbout(parent) {
 }
 
 function loadPortfolio(parent) {
-    let portfolioContainer = document.createElement('div');
-    portfolioContainer.className = 'portfolio-container';
-    portfolioContainer.textContent = 'Portfolio';
+    let comicsContainer = document.createElement('div');
+    comicsContainer.className = 'comics-container';
+    comicsContainer.textContent = 'Portfolio';
 
-    parent.appendChild(portfolioContainer);
+    parent.appendChild(comicsContainer);
 }
 
 function loadContact(parent) {
-    let contactContainer = document.createElement('div');
-    contactContainer.className = 'contact-container';
-    contactContainer.textContent = 'Contact';
+    let comicsContainer = document.createElement('div');
+    comicsContainer.className = 'comics-container';
+    comicsContainer.textContent = 'Contact';
 
-    parent.appendChild(contactContainer);
+    parent.appendChild(comicsContainer);
 }

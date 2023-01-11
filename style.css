@@ -86,3 +86,19 @@ i {
     font-weight: bold;
     padding-bottom: 20px;
 }
+
+/* portfolio */
+
+.portfolio-container {
+    font-size: calc(20px + 1.8vw);
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+/* contact */
+
+.contact-container {
+    font-size: calc(20px + 1.8vw);
+    font-weight: bold;
+    padding-bottom: 20px;
+}
