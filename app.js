@@ -37,17 +37,17 @@ var renderParent = (currPage, nextPage) => {
     }
     
     if (currPage.numeration === 1) {
-        history.pushState(nextPage, '', '/about.html');
+        history.pushState(nextPage, '', '/about');
         document.title = titles[1]
     }
     
     if (currPage.numeration === 2) {
-        history.pushState(nextPage, '', '/portfolio.html');
+        history.pushState(nextPage, '', '/portfolio');
         document.title = titles[2]
     }
 
     if (currPage.numeration === 3) {
-        history.pushState(nextPage, '', '/contact.html');
+        history.pushState(nextPage, '', '/contact');
         document.title = titles[3]
     }
 
