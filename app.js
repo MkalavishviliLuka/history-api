@@ -81,7 +81,7 @@ function renderParent(currPage, nextPage){
         let back = document.createElement('i');
         back.className = 'fa-solid fa-arrow-right-to-bracket back-link';
         back.onclick = () => {
-            renderParent({ numeration: currPage.numeration - 1, iconClass: currPage.iconClass - 1 }, currPage);
+            history.back()
         };
         parent.appendChild(back);
     }
