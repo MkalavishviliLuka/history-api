@@ -10,50 +10,50 @@ const titles = [
     'Luka Mkalavishvili - Contact'
 ]
 
-window.onload = () => switchPage()
-addEventListener('popstate', () => switchPage())
+window.onload = () => switchPage(location.pathname)
+addEventListener('popstate', () => switchPage(location.pathname))
 
-function switchPage(){
-    if (location.pathname === '/index' || location.pathname === '/' || location.pathname === '/history-api/') {
+function switchPage(route){
+
+    if (route === '/index' || route === '/' || route === '/history-api/') {
         renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
     }
-    if (location.pathname === '/about') {
+    if (route === '/about') {
         renderParent({ numeration: 1, iconClass: 1 }, { numeration: 2, iconClass: 2 });
     }
-    if (location.pathname === '/portfolio') {
+    if (route === '/portfolio') {
         renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
     }
-    if (location.pathname === '/contact') {
+    if (route === '/contact') {
         renderParent({ numeration: 3, iconClass: 3 }, null);
     }
+
 }
 
-var renderParent = (currPage, nextPage) => {
-    if (document.querySelector('.page-container').innerHTML.length > 0) {
-        document.querySelector('.page-container').innerHTML = ''
-    }
-
-
-    if (currPage.numeration === 0) {
-        history.pushState(nextPage, '', '/');
-        document.title = titles[0]
-    }
+function pushPage(nextPage){
     
-    if (currPage.numeration === 1) {
+    if (nextPage.numeration === 1) {
         history.pushState(nextPage, '', '/about');
         document.title = titles[1]
     }
     
-    if (currPage.numeration === 2) {
+    if (nextPage.numeration === 2) {
         history.pushState(nextPage, '', '/portfolio');
         document.title = titles[2]
     }
 
-    if (currPage.numeration === 3) {
+    if (nextPage.numeration === 3) {
         history.pushState(nextPage, '', '/contact');
         document.title = titles[3]
     }
 
+}
+
+function renderParent(currPage, nextPage){
+
+    if (document.querySelector('.page-container').innerHTML.length > 0) {
+        document.querySelector('.page-container').innerHTML = ''
+    }
 
     let parent = document.querySelector('.page-container');
     parent.style.pointerEvents = 'none';
@@ -70,10 +70,10 @@ var renderParent = (currPage, nextPage) => {
         icon.className = 'fa-solid fa-door-open page-link';
         parent.appendChild(icon);
         icon.onclick = () => {
+            pushPage(nextPage)
             if (nextPage === null || nextPage.numeration > 3) return;
             renderParent(nextPage, { numeration: nextPage.numeration + 1, iconClass: nextPage.iconClass + 1 });
             icon.style.pointerEvents = 'none';
-            icon.onclick = () => { };
         };
     }
 
@@ -103,4 +103,5 @@ var renderParent = (currPage, nextPage) => {
     if (currPage.numeration === 2 && currPage.iconClass === 2) Portfolio.loadPortfolio(parent);
 
     if (currPage.numeration === 3 && currPage.iconClass === 3) Contact.loadContact(parent);
+
 };

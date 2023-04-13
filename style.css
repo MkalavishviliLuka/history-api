@@ -79,19 +79,24 @@ i {
     pointer-events: none;
 }
 
+.page-container.secondary-page .fa-door-open{
+    font-size: calc(20px + 1.8vw);
+    right: 20px;
+    top: 20px;
+    position: absolute;
+}
+
+.page-container.secondary-page h1{
+    font-size: 40px;
+}
+
+
 /* about */
 
 .about-container {
     font-size: calc(20px + 1.8vw);
     font-weight: bold;
     padding-bottom: 20px;
-}
-
-.page-container.secondary-page .fa-door-open{
-    font-size: calc(20px + 1.8vw);
-    right: 20px;
-    top: 20px;
-    position: absolute;
 }
 
 /* portfolio */
