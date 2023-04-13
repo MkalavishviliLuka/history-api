@@ -6,6 +6,8 @@ export const Home = {
     animate: '',
 
     loadHomepage(parent) {
+        parent.style.paddingTop = '0px'
+
         let heading = document.createElement('h1');
         heading.textContent = "Luka Mkalavishvili";
         parent.appendChild(heading);
@@ -30,7 +32,7 @@ export const Home = {
             shading: THREE.FlatShading
         });
     
-        for (var i = 0; i < 1000; i++) {
+        for (var i = 0; i < 300; i++) {
             var mesh = new THREE.Mesh(geometry, material);
             mesh.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
             mesh.position.multiplyScalar(90 + (Math.random() * 700));

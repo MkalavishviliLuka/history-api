@@ -1,5 +1,7 @@
 export const Contact = {
     loadContact(parent) {
+        parent.style.paddingTop = '120px'
+
         let contactContainer = document.createElement('div');
         contactContainer.className = 'contact-container';
 

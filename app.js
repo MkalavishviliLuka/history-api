@@ -15,6 +15,8 @@ addEventListener('popstate', () => switchPage(location.pathname))
 
 function switchPage(route){
 
+    scrollTo(0, 0)
+
     if (route === '/index' || route === '/' || route === '/history-api/') {
         renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
     }
@@ -34,22 +36,30 @@ function pushPage(nextPage){
     
     if (nextPage.numeration === 1) {
         history.pushState(nextPage, '', '/about');
-        document.title = titles[1]
+        setPageTitle(1)
     }
     
     if (nextPage.numeration === 2) {
         history.pushState(nextPage, '', '/portfolio');
-        document.title = titles[2]
+        setPageTitle(2)
     }
 
     if (nextPage.numeration === 3) {
         history.pushState(nextPage, '', '/contact');
-        document.title = titles[3]
+        setPageTitle(3)
     }
 
 }
 
+function setPageTitle(num){
+    if (num === 0) document.title = titles[0]
+    if (num === 1) document.title = titles[1]
+    if (num === 2) document.title = titles[2]
+    if (num === 3) document.title = titles[3]
+}
+
 function renderParent(currPage, nextPage){
+    setPageTitle(currPage.numeration)
 
     if (document.querySelector('.page-container').innerHTML.length > 0) {
         document.querySelector('.page-container').innerHTML = ''
@@ -85,16 +95,6 @@ function renderParent(currPage, nextPage){
         };
         parent.appendChild(back);
     }
-
-    const parentObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('scale-up');
-            }
-        });
-    });
-
-    parentObserver.observe(parent);
 
     if (currPage.numeration === 0 && currPage.iconClass === 0) Home.loadHomepage(parent);
 

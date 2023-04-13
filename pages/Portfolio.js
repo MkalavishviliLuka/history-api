@@ -1,5 +1,7 @@
 export const Portfolio = {
     loadPortfolio(parent) {
+        parent.style.paddingTop = '120px'
+
         let portfolioContainer = document.createElement('div');
         portfolioContainer.className = 'portfolio-container';
 
