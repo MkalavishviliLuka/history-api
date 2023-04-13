@@ -10,20 +10,23 @@ const titles = [
     'Luka Mkalavishvili - Contact'
 ]
 
-window.onload = function () {
-    if (location.pathname === '/index.html' || location.pathname === '/' || location.pathname === '/ap/') {
+window.onload = () => switchPage()
+addEventListener('popstate', () => switchPage())
+
+function switchPage(){
+    if (location.pathname === '/index' || location.pathname === '/' || location.pathname === '/history-api/') {
         renderParent({ numeration: 0, iconClass: 0 }, { numeration: 1, iconClass: 1 });
     }
-    if (location.pathname === '/about.html') {
+    if (location.pathname === '/about') {
         renderParent({ numeration: 1, iconClass: 1 }, { numeration: 2, iconClass: 2 });
     }
-    if (location.pathname === '/portfolio.html') {
+    if (location.pathname === '/portfolio') {
         renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
     }
-    if (location.pathname === '/contact.html') {
+    if (location.pathname === '/contact') {
         renderParent({ numeration: 3, iconClass: 3 }, null);
     }
-};
+}
 
 var renderParent = (currPage, nextPage) => {
     if (document.querySelector('.page-container').innerHTML.length > 0) {
