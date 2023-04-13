@@ -1,7 +1,7 @@
-import { Home } from "./pages/Home";
-import { About } from "./pages/about";
-import { Portfolio } from "./pages/portfolio";
-import { Contact } from "./pages/contact";
+import { Home } from "/pages/Home.js";
+import { About } from "/pages/About.js";
+import { Portfolio } from "/pages/Portfolio.js";
+import { Contact } from "/pages/Contact.js";
 
 const titles = [
     'Luka Mkalavishvili - Home', 
