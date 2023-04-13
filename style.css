@@ -81,10 +81,17 @@ i {
 
 /* about */
 
-.comics-container {
+.about-container {
     font-size: calc(20px + 1.8vw);
     font-weight: bold;
     padding-bottom: 20px;
+}
+
+.page-container.secondary-page .fa-door-open{
+    font-size: calc(20px + 1.8vw);
+    right: 20px;
+    top: 20px;
+    position: absolute;
 }
 
 /* portfolio */
