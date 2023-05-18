@@ -403,17 +403,74 @@ form label{
 
 form button{
     margin-top: 10px;
-    width: fit-content;
     font-size: 20px;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 10px 35px 10px 15px;
     transition: 0.3s;
     border: 0;
     border-bottom: 2px solid white;
+    width: 150px;
+}
+
+form button.launched{
+    padding: 10px 15px;
 }
 
 form button:hover{
     border-color: var(--tc);
+}
+
+form span{
+    display: block;
+    width: 40px;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 120px;
+    transition: 1s;
+}
+
+form span.launch{
+    animation: launch 5s linear;
+    animation-fill-mode: forwards; 
+    transform: scale(1.8) rotate(-45deg);
+}
+form span.launch .outer-fire{
+    stroke: red;
+    animation: burn 0.05s infinite;
+    animation-fill-mode: forwards; 
+    animation-delay: 1s;
+}
+
+@keyframes launch {
+    0%{
+        bottom: 0;
+    }
+    25%{
+        bottom: 0;
+    }
+    100%{
+        bottom: 200vh;
+    }
+}
+
+@keyframes burn {
+    0%{
+        stroke-width: 0px;
+        transform: translateY(15px);
+    }
+    50%{
+        stroke-width: 20px;
+        transform: translateY(-10px);
+    }
+    100%{
+        stroke-width: 0%;
+        transform: translateY(15px);
+    }
+}
+
+form span svg{
+    width: 100%;
 }
 
 /*  */
