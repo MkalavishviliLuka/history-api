@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 *{
     margin: 0;
     box-sizing: border-box;
@@ -16,8 +18,26 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--tc);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    user-select:none
+}
+
+p, h1, h2, h3, h4, h5, h6{
+    width: fit-content;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #192A51;
+    border-radius: 1px;
 }
 
 :root {
@@ -28,7 +48,7 @@ body {
     --sc: #F5E6E8;
 }
 
-i {
+a.back-link, a.page-link {
     font-weight: bold;
     font-size: calc(20px + 2.5vw);
     cursor: pointer;
@@ -52,12 +72,8 @@ i {
     width: 100%;
 }
 
-.page-container.home-page{
-    /* transform: scale(0); */
-}
-
 .page-container h1 {
-    font-size: calc(20px + 3.5vw);
+    font-size: calc(30px + 3.5vw);
 }
 
 .page-container canvas {
@@ -84,6 +100,70 @@ i {
     font-size: 22px;
 }
 
+.custom-cursor{
+    top: 0;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    transition: transform 0.15s;
+}
+
+.custom-cursor.text-cursor{
+    border-color: white;
+    transform: scale(4);
+    box-shadow: 0 0 5px rgba(255,255,255);
+}
+
+.pulsing-cursor{
+    top: 0;
+    transition: 0.1s;
+    animation: scale 1.5s infinite;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    padding: 5px;
+    z-index: 100;
+    transition: transform 0.15s;
+}
+
+.pulsing-cursor.text-cursor{
+    background-color: white;
+}
+
+.anchor-cursor{
+    top: 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    pointer-events: none;
+    font-weight: bold;
+    z-index: 100;
+    transition: transform 0.15s;
+}
+
+@keyframes scale {
+    0%, 100%{
+        transform: scale(0.2)
+    }
+
+    50%{
+        transform: scale(1);
+    }
+}
+
 /* Animations */
 
 .page-container.home-page.scale-up {
@@ -102,11 +182,11 @@ i {
 
 .fade-element{
     opacity: 0;
-    transition: 1s;
+    transition: 1s !important;
 }
 
 .fade-in{
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 
@@ -120,7 +200,7 @@ i {
 }
 
 .page-container.secondary-page h1{
-    font-size: 40px;
+    font-size: 50px;
     position: absolute;
     top: 20px;
     left: 50%;
@@ -137,9 +217,10 @@ i {
 
 .section-wrapper{
     width: 100%;
-    padding: 40px 30px;
+    padding: 30px 70px;
     display: flex;
     flex-wrap: wrap;
+    min-height: 100vh;
 }
 
 .section-wrapper > div{
@@ -150,13 +231,20 @@ i {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    cursor: pointer;
+    font-size: 60px;
+}
+
+/* Homepage */
+
+[id="0-page"]{
+    color: var(--tc) !important;
 }
 
 /* about */
 
 .about-welcome .wrapper-right{
     display: flex;  
-    justify-content: end;
     align-items: end;
     flex-direction: column;
     padding-bottom: 50px;
@@ -176,11 +264,159 @@ i {
 
 .about-skills{
     flex-direction: column;
+    align-items: center;
+}
+
+.about-skills .section-intro{
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.work-img, .technologies-img, .mains-img{
+    font-weight: bold !important;
+}
+
+.icon-holder{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+
+.icon-img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.glitch-text{
+    text-shadow: red -3px 0px, cyan 3px 0px;
+}
+
+@media(min-width: 992px){
+    .work-img{
+        color: purple;
+        font-size: 23px;
+    }
+
+    .technologies-img{
+        color: rgb(255, 0, 81);
+        font-size: 23px;
+    }
+
+    .mains-img{
+        color: green;
+        font-size: 23px;
+    }
+
+    .about-skills .section-intro{
+        margin-bottom: 40px;
+    }
+
+    .work-img, .technologies-img, .mains-img{
+        position: relative;
+    }
+    
+    .work-img img, .technologies-img img, .mains-img img{
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 120px;
+        object-fit: contain;
+        left: 0;
+        bottom: 100%;
+        display: none;
+    }
+    
+    .work-img:hover img, .technologies-img:hover img, .mains-img:hover img{
+        display: block;
+        width: 100%;
+    }
 }
 
 /* portfolio */
 
 /* contact */
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    justify-content: start;
+}
+
+form label{
+    font-size: 17px;
+}
+
+form input, form textarea{
+    padding: 10px 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 0px;
+    border-bottom: 2px solid var(--tc);
+    font-size: 18px;
+    outline: none;
+}
+
+form textarea{
+    resize: none;
+    min-height: 100px;
+}
+
+form > div{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+form input:focus + label, form input:not(:placeholder-shown) + label, form input:-webkit-autofill + label{
+    top: 3px;
+    font-size: 9.5px !important;
+}
+
+form textarea:focus + label, form textarea:not(:placeholder-shown) + label, form textarea:-webkit-autofill + label{
+    top: 3px;
+    font-size: 9.5px !important;
+}
+
+form label{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    transition: 0.3s;
+    color: rgb(82, 81, 81);
+    pointer-events: none;
+}
+
+form button{
+    margin-top: 10px;
+    width: fit-content;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: 0.3s;
+    border: 0;
+    border-bottom: 2px solid white;
+}
+
+form button:hover{
+    border-color: var(--tc);
+}
+
+/*  */
 
 @media(max-width: 992px){
     .section-wrapper{

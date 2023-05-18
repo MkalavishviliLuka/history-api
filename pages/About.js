@@ -1,5 +1,20 @@
 export const About = {
-    scaleELements: [],
+    fadeElement: [],
+    
+    icons: [
+        ['/html.png'],
+        ['/css.png', '/tailwind.png', '/bootstrap.png'],
+        ['/js.png', '/electron.png', '/react.png', '/next.png', '/redux.png', '/jquery.png', '/angular.png', '/angular-u.png', '/vue.png'],
+        ['/wp.png', '/ps.png'],
+        ['/git.png'],
+        ['/phs.png', '/il.png']
+    ],
+
+    gifs: [
+        {parent: '.work-img', src:  '/work-gif.gif'},
+        {parent: '.technologies-img', src:  '/technologies-gif.gif'},
+        {parent: '.mains-img', src:  '/mains-gif.gif'},
+    ],
 
     loadAbout(parent) {
         parent.style.paddingTop = '120px'
@@ -21,15 +36,15 @@ export const About = {
 
         let firstLeftHeading = document.createElement('h2')
         firstLeftHeading.textContent = 'Hi there,'
-        firstLeftHeading.className = 'fade-element'
+        firstLeftHeading.className = 'fade-element glitch-text'
         aboutWelcomeLeft.appendChild(firstLeftHeading)
-        this.scaleELements.push(firstLeftHeading)
+        this.fadeElement.push(firstLeftHeading)
 
         let firstLeftSubHeading = document.createElement('h4')
         firstLeftSubHeading.textContent = 'Nice to see you 🍻'
         firstLeftSubHeading.className = 'fade-element'
         aboutWelcomeLeft.appendChild(firstLeftSubHeading)
-        this.scaleELements.push(firstLeftSubHeading)
+        this.fadeElement.push(firstLeftSubHeading)
 
         aboutWelcome.appendChild(aboutWelcomeLeft)
 
@@ -38,22 +53,22 @@ export const About = {
         aboutWelcome.appendChild(aboutWelcomeRight)
 
         let firstRightHeading = document.createElement('h2')
-        firstRightHeading.textContent = 'Let me'
+        firstRightHeading.textContent = '<LetMe />'
         firstRightHeading.className = 'fade-element'
         aboutWelcomeRight.appendChild(firstRightHeading)
-        this.scaleELements.push(firstRightHeading)
+        this.fadeElement.push(firstRightHeading)
 
         let firstRightSubHeading = document.createElement('h4')
         firstRightSubHeading.textContent = 'Introduce myself'
         firstRightSubHeading.className = 'fade-element'
         aboutWelcomeRight.appendChild(firstRightSubHeading)
-        this.scaleELements.push(firstRightSubHeading)
+        this.fadeElement.push(firstRightSubHeading)
 
         let musicSuggest = document.createElement('p')
         musicSuggest.textContent = '*Meanwhile you can listen Rolling Stones introducing himself'
         musicSuggest.className = 'fade-element'
         aboutWelcomeRight.appendChild(musicSuggest)
-        this.scaleELements.push(musicSuggest)
+        this.fadeElement.push(musicSuggest)
 
         if(!document.querySelector('.audio-toggler')){
             let playIcon = document.createElement('i')
@@ -65,7 +80,7 @@ export const About = {
             }
 
             musicSuggest.appendChild(playIcon)
-            this.scaleELements.push(playIcon)
+            this.fadeElement.push(playIcon)
         }
 
         // Second
@@ -76,29 +91,49 @@ export const About = {
         let aboutSkillsHeading = document.createElement('h2')
         aboutSkillsHeading.className = 'section-heading fade-element'
         aboutSkillsHeading.textContent = 'Skills'
-        this.scaleELements.push(aboutSkillsHeading)
+        this.fadeElement.push(aboutSkillsHeading)
         aboutSkills.appendChild(aboutSkillsHeading)
 
         let aboutSkillsIntro = document.createElement('p')
         aboutSkillsIntro.className = 'section-intro fade-element'
-        aboutSkillsIntro.textContent = '//In skills section you will see skills'
-        this.scaleELements.push(aboutSkillsIntro)
+        aboutSkillsIntro.innerHTML = "I've <span class='work-img'>worked / trained</span> with <span  class='technologies-img'>different technologies</span>, but mostly on <span  class='mains-img'>React.js and Vanilla Javascript.</span>"
+        this.fadeElement.push(aboutSkillsIntro)
         aboutSkills.appendChild(aboutSkillsIntro)
 
+        this.icons.forEach(iconSet => {
+            let iconSetHolder = document.createElement('div')
+            iconSetHolder.className = 'icon-holder fade-element'
+
+            iconSet.forEach(icon => {
+                let img = document.createElement('img')
+                img.className = 'icon-img'
+                img.src = icon
+                iconSetHolder.appendChild(img)
+            })
+            this.fadeElement.push(iconSetHolder)
+            aboutSkills.appendChild(iconSetHolder)
+         })
     
         const parentObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                entry.isIntersecting ? entry.target.classList.add('fade-in') : entry.target.classList.remove('fade-in');
+                entry.isIntersecting ? entry.target.classList.add('fade-in') : ''
             });
         });
 
-        this.scaleELements.forEach(item => {
+        this.fadeElement.forEach(item => {
             parentObserver.observe(item);
         })
 
         aboutContainer.appendChild(aboutWelcome)
         aboutContainer.appendChild(aboutSkills)
         parent.appendChild(aboutContainer);
+
+        this.gifs.forEach((gif, index) => {
+            let workImg = document.createElement('img')
+            workImg.src = gif.src
+
+            document.querySelector(gif.parent).appendChild(workImg)
+        })
     },
 
     loadMusic(){

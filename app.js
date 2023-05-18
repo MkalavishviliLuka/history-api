@@ -14,7 +14,6 @@ window.onload = () => switchPage(location.pathname)
 addEventListener('popstate', () => switchPage(location.pathname))
 
 function switchPage(route){
-
     scrollTo(0, 0)
 
     if (route === '/index' || route === '/' || route === '/history-api/') {
@@ -33,6 +32,7 @@ function switchPage(route){
 }
 
 function pushPage(nextPage){
+    scrollTo(0, 0)
     
     if (nextPage.numeration === 1) {
         history.pushState(nextPage, '', '/about');
@@ -76,7 +76,7 @@ function renderParent(currPage, nextPage){
     parent.setAttribute('id', `${currPage.numeration}-page`);
 
     if(currPage.numeration < 3 && currPage.iconClass < 3){
-        let icon = document.createElement('i');
+        var icon = document.createElement('a');
         icon.className = 'fa-solid fa-door-open page-link';
         parent.appendChild(icon);
         icon.onclick = () => {
@@ -88,12 +88,25 @@ function renderParent(currPage, nextPage){
     }
 
     if (currPage.numeration > 0 && currPage.iconClass > 0) {
-        let back = document.createElement('i');
+        var back = document.createElement('a');
         back.className = 'fa-solid fa-arrow-right-to-bracket back-link';
         back.onclick = () => {
+            scrollTo(0, 0)
             history.back()
         };
         parent.appendChild(back);
+    }
+
+    onscroll = () => {
+        if(currPage.numeration > 0 && currPage.iconClass > 0){
+            if(scrollY > 1){
+                icon != undefined ? icon.style.position = 'fixed' : ''
+                back != undefined ? back.style.position = 'fixed' : ''
+            }else{
+                icon != undefined ? icon.style.position = 'absolute' : ''
+                back != undefined ? back.style.position = 'absolute' : ''
+            }
+        }
     }
 
     if (currPage.numeration === 0 && currPage.iconClass === 0) Home.loadHomepage(parent);
@@ -105,3 +118,59 @@ function renderParent(currPage, nextPage){
     if (currPage.numeration === 3 && currPage.iconClass === 3) Contact.loadContact(parent);
 
 };
+
+function customCursor(){
+    
+    let defaultCursor = document.createElement('div')
+    let pulsingCursor = document.createElement('div')
+    let anchorCursor = document.createElement('div')
+
+    defaultCursor.className = 'custom-cursor'
+    pulsingCursor.className = 'pulsing-cursor'
+    anchorCursor.className = 'anchor-cursor'
+
+    anchorCursor.textContent = 'CLICK!'
+
+    document.body.appendChild(defaultCursor)
+    document.body.appendChild(pulsingCursor)
+    document.body.appendChild(anchorCursor)
+
+    let options = {}
+
+    onmousemove = (event)=>{
+        const tag = event.target.tagName
+        if(
+            tag === 'H1' || 
+            tag === 'H2' || 
+            tag === 'H3' || 
+            tag === 'H4' || 
+            tag === 'H5' || 
+            tag === 'H6' || 
+            tag === 'P' || 
+            tag === 'I' ||
+            tag === 'B'
+        ){
+            options = { x: event.clientX, y: event.clientY + scrollY, text: true }
+        }else if(tag === 'A' || tag === 'path' || tag === 'BUTTON') {
+            options = { x: event.clientX, y: event.clientY + scrollY, link: true }
+        }else{
+            options = { x: event.clientX, y: event.clientY + scrollY }
+        }
+
+        options.text ? defaultCursor.classList.add('text-cursor') : defaultCursor.classList.remove('text-cursor')
+        options.text ? pulsingCursor.classList.add('text-cursor') : pulsingCursor.classList.remove('text-cursor')
+        options.link ? anchorCursor.style.transform = 'scale(1)' : anchorCursor.style.transform = 'scale(0)'
+
+        defaultCursor.style.left = `${options.x - 10}px`
+        defaultCursor.style.top = `${options.y - 10}px`
+        
+        pulsingCursor.style.left = `${options.x - 4}px`
+        pulsingCursor.style.top = `${options.y - 4}px`
+        
+        anchorCursor.style.left = `${options.x - 30}px`
+        anchorCursor.style.top = `${options.y - 30}px`
+    }
+
+}
+
+customCursor()

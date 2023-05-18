@@ -29,7 +29,7 @@ export const Home = {
     
         var material = new THREE.MeshPhongMaterial({
             color: 0x967AA1,
-            shading: THREE.FlatShading
+            flatShading: THREE.FlatShading
         });
     
         for (var i = 0; i < 300; i++) {
