@@ -2,18 +2,18 @@ export const About = {
     fadeElement: [],
     
     icons: [
-        ['/html.png'],
-        ['/css.png', '/tailwind.png', '/bootstrap.png'],
-        ['/js.png', '/electron.png', '/react.png', '/next.png', '/redux.png', '/jquery.png', '/angular.png', '/angular-u.png', '/vue.png'],
-        ['/wp.png', '/ps.png'],
-        ['/git.png'],
-        ['/phs.png', '/il.png']
+        ['/public/html.png'],
+        ['/public/css.png', '/public/tailwind.png', '/public/bootstrap.png'],
+        ['/public/js.png', '/public/electron.png', '/public/react.png', '/public/next.png', '/public/redux.png', '/public/jquery.png', '/public/angular.png', '/public/angular-u.png', '/public/vue.png'],
+        ['/public/wp.png', '/public/ps.png'],
+        ['/public/git.png'],
+        ['/public/phs.png', '/public/il.png']
     ],
 
     gifs: [
-        {parent: '.work-img', src:  '/work-gif.gif'},
-        {parent: '.technologies-img', src:  '/technologies-gif.gif'},
-        {parent: '.mains-img', src:  '/mains-gif.gif'},
+        {parent: '.work-img', src:  '/public/work-gif.gif'},
+        {parent: '.technologies-img', src:  '/public/technologies-gif.gif'},
+        {parent: '.mains-img', src:  '/public/mains-gif.gif'},
     ],
 
     loadAbout(parent) {
