@@ -230,7 +230,6 @@ a.back-link, a.page-link {
     padding: 30px 70px;
     display: flex;
     flex-wrap: wrap;
-    min-height: 100vh;
 }
 
 .section-wrapper > div{
@@ -306,6 +305,10 @@ a.back-link, a.page-link {
 }
 
 @media(min-width: 992px){
+    .section-wrapper{
+        min-height: 100vh;
+    }
+    
     .work-img{
         color: purple;
         font-size: 23px;
