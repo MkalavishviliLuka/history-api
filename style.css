@@ -74,6 +74,8 @@ a.back-link, a.page-link {
 
 .page-container h1 {
     font-size: calc(30px + 3.5vw);
+    text-align: center;
+    padding-bottom: 30px;
 }
 
 .page-container canvas {
@@ -192,6 +194,13 @@ a.back-link, a.page-link {
 
 /* Animations */
 
+.blur-out{
+    animation: blur 1.5s linear;
+    animation-fill-mode: forwards; 
+    pointer-events: none;
+    padding-left: 0px !important;
+}
+
 .page-container.secondary-page .fa-door-open{
     font-size: calc(20px + 1.8vw);
     right: 20px;
@@ -200,11 +209,12 @@ a.back-link, a.page-link {
 }
 
 .page-container.secondary-page h1{
-    font-size: 50px;
+    font-size: 30px;
     position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    stroke: red;
 }
 
 .about-container, .portfolio-container, .contact-container{
@@ -249,6 +259,7 @@ a.back-link, a.page-link {
     flex-direction: column;
     padding-bottom: 50px;
     padding-right: 50px;
+    text-align: right;
 }
 
 .about-welcome .wrapper-right p{
@@ -270,6 +281,7 @@ a.back-link, a.page-link {
 .about-skills .section-intro{
     font-weight: 100;
     font-size: 16px;
+    margin-bottom: 30px;
 }
 
 .work-img, .technologies-img, .mains-img{
@@ -280,7 +292,7 @@ a.back-link, a.page-link {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    margin: 20px 0px;
+    margin: 30px 0px;
 }
 
 .icon-img{
@@ -332,6 +344,16 @@ a.back-link, a.page-link {
         display: block;
         width: 100%;
     }
+}
+
+@media (max-width: 768px){
+    .about-skills .section-intro{
+        line-height: 25px;
+    }
+}
+
+.work-img img, .technologies-img img, .mains-img img{
+    display: none;
 }
 
 /* portfolio */
@@ -435,6 +457,7 @@ form span.launch{
     animation-fill-mode: forwards; 
     transform: scale(1.8) rotate(-45deg);
 }
+
 form span.launch .outer-fire{
     stroke: red;
     animation: burn 0.05s infinite;
@@ -469,6 +492,23 @@ form span.launch .outer-fire{
     }
 }
 
+@keyframes blur {
+    0% {
+        font-size: 16px;
+        filter: blur(0px);
+    }
+
+    50% {
+        font-size: 8px;
+        filter: blur(20px);
+    }
+
+    100% {
+        font-size: 0px;
+        filter: blur(40px);
+    }
+}
+
 form span svg{
     width: 100%;
 }
@@ -476,6 +516,11 @@ form span svg{
 /*  */
 
 @media(max-width: 992px){
+    .page-container{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
     .section-wrapper{
         padding: 30px 20px;
     }
@@ -488,5 +533,14 @@ form span svg{
 
     .about-welcome .wrapper-right{
         padding: 0;
+    }
+
+    .custom-cursor, .anchor-cursor, .custom-cursor.text-cursor, .pulsing-cursor{
+        display: none;
+    }
+
+    .icon-img{
+        width: 60px;
+        height: 60px;
     }
 }

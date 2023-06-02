@@ -36,7 +36,7 @@ export const About = {
 
         let firstLeftHeading = document.createElement('h2')
         firstLeftHeading.textContent = 'Hi there,'
-        firstLeftHeading.className = 'fade-element glitch-text'
+        firstLeftHeading.className = 'fade-element'
         aboutWelcomeLeft.appendChild(firstLeftHeading)
         this.fadeElement.push(firstLeftHeading)
 
@@ -75,7 +75,10 @@ export const About = {
             playIcon.className = 'fa-solid fa-circle-play fade-element'
 
             playIcon.onclick = ()=>{
-                playIcon.remove()
+                playIcon.classList.add('blur-out')
+                setTimeout(() => {
+                    playIcon.remove()
+                }, 1500);
                 this.loadMusic()
             }
 
