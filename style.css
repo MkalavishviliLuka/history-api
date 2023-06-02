@@ -305,10 +305,7 @@ a.back-link, a.page-link {
 }
 
 @media(min-width: 992px){
-    .section-wrapper{
-        min-height: 100vh;
-    }
-    
+
     .work-img{
         color: purple;
         font-size: 23px;
@@ -525,7 +522,8 @@ form span svg{
     }
 
     .section-wrapper{
-        padding: 30px 20px;
+        min-height: unset;
+        padding: 30px 20px 50px 20px;
     }
 
     .about-welcome{
