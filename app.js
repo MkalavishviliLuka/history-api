@@ -6,8 +6,9 @@ import { Contact } from "/pages/Contact.js";
 const titles = [
     'Luka Mkalavishvili - Home', 
     'Luka Mkalavishvili - About', 
-    'Luka Mkalavishvili - Portfolio', 
-    'Luka Mkalavishvili - Contact'
+    // Commented incomplete pages
+    // 'Luka Mkalavishvili - Portfolio', 
+    // 'Luka Mkalavishvili - Contact'
 ]
 
 window.onload = () => switchPage(location.pathname)
@@ -21,13 +22,14 @@ function switchPage(route){
     }
     if (route === '/about') {
         renderParent({ numeration: 1, iconClass: 1 }, { numeration: 2, iconClass: 2 });
-    }
-    if (route === '/portfolio') {
-        renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
-    }
-    if (route === '/contact') {
-        renderParent({ numeration: 3, iconClass: 3 }, null);
-    }
+    } 
+    // Commented incomplete pages
+    // if (route === '/portfolio') {
+    //     renderParent({ numeration: 2, iconClass: 2 }, { numeration: 3, iconClass: 3 });
+    // }
+    // if (route === '/contact') {
+    //     renderParent({ numeration: 3, iconClass: 3 }, null);
+    // }
 
 }
 
@@ -38,24 +40,26 @@ function pushPage(nextPage){
         history.pushState(nextPage, '', '/about');
         setPageTitle(1)
     }
-    
-    if (nextPage.numeration === 2) {
-        history.pushState(nextPage, '', '/portfolio');
-        setPageTitle(2)
-    }
+     
+    // Commented incomplete pages
+    // if (nextPage.numeration === 2) {
+    //     history.pushState(nextPage, '', '/portfolio');
+    //     setPageTitle(2)
+    // }
 
-    if (nextPage.numeration === 3) {
-        history.pushState(nextPage, '', '/contact');
-        setPageTitle(3)
-    }
+    // if (nextPage.numeration === 3) {
+    //     history.pushState(nextPage, '', '/contact');
+    //     setPageTitle(3)
+    // }
 
 }
 
 function setPageTitle(num){
     if (num === 0) document.title = titles[0]
-    if (num === 1) document.title = titles[1]
-    if (num === 2) document.title = titles[2]
-    if (num === 3) document.title = titles[3]
+    if (num === 1) document.title = titles[1] 
+    // Commented incomplete pages
+    // if (num === 2) document.title = titles[2]
+    // if (num === 3) document.title = titles[3]
 }
 
 function renderParent(currPage, nextPage){
@@ -75,7 +79,8 @@ function renderParent(currPage, nextPage){
 
     parent.setAttribute('id', `${currPage.numeration}-page`);
 
-    if(currPage.numeration < 3 && currPage.iconClass < 3){
+    // Number here should be less by one than maximum pages
+    if(currPage.numeration < 1 && currPage.iconClass < 1){
         var icon = document.createElement('a');
         icon.className = 'fa-solid fa-door-open page-link';
         parent.appendChild(icon);
@@ -112,10 +117,11 @@ function renderParent(currPage, nextPage){
     if (currPage.numeration === 0 && currPage.iconClass === 0) Home.loadHomepage(parent);
 
     if (currPage.numeration === 1 && currPage.iconClass === 1) About.loadAbout(parent);
+ 
+    // Commented incomplete pages
+    // if (currPage.numeration === 2 && currPage.iconClass === 2) Portfolio.loadPortfolio(parent);
 
-    if (currPage.numeration === 2 && currPage.iconClass === 2) Portfolio.loadPortfolio(parent);
-
-    if (currPage.numeration === 3 && currPage.iconClass === 3) Contact.loadContact(parent);
+    // if (currPage.numeration === 3 && currPage.iconClass === 3) Contact.loadContact(parent);
 
 };
 
