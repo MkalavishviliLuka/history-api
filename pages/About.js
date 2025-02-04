@@ -109,7 +109,7 @@ export const About = {
         let aboutSkillsIntro = document.createElement("p");
         aboutSkillsIntro.className = "section-intro fade-element";
         aboutSkillsIntro.innerHTML =
-            "I've <span class='work-img'>worked / trained</span> with <span  class='technologies-img'>different technologies</span>, but mostly on <span  class='mains-img'>React.js and Vanilla Javascript.</span>";
+            "I've <span class='work-img'>worked</span> with <span  class='technologies-img'>different technologies</span>, but mostly using <span  class='mains-img'>React, Next.js and Vanilla Javascript.</span>";
         this.fadeElement.push(aboutSkillsIntro);
         aboutSkills.appendChild(aboutSkillsIntro);
 
