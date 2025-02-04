@@ -45,11 +45,11 @@ export const About = {
         let aboutWelcomeLeft = document.createElement("div");
         aboutWelcomeLeft.className = "wrapper-left";
 
-        let firstLeftHeading = document.createElement("h2");
-        firstLeftHeading.textContent = "Hi there,";
-        firstLeftHeading.className = "fade-element glitch-text";
-        aboutWelcomeLeft.appendChild(firstLeftHeading);
-        this.fadeElement.push(firstLeftHeading);
+        let firstLeftHeading = document.createElement('h2')
+        firstLeftHeading.textContent = 'Hi there,'
+        firstLeftHeading.className = 'fade-element'
+        aboutWelcomeLeft.appendChild(firstLeftHeading)
+        this.fadeElement.push(firstLeftHeading)
 
         let firstLeftSubHeading = document.createElement("h4");
         firstLeftSubHeading.textContent = "Nice to see you 🍻";
@@ -86,10 +86,13 @@ export const About = {
             let playIcon = document.createElement("i");
             playIcon.className = "fa-solid fa-circle-play fade-element";
 
-            playIcon.onclick = () => {
-                playIcon.remove();
-                this.loadMusic();
-            };
+            playIcon.onclick = ()=>{
+                playIcon.classList.add('blur-out')
+                setTimeout(() => {
+                    playIcon.remove()
+                }, 1500);
+                this.loadMusic()
+            }
 
             musicSuggest.appendChild(playIcon);
             this.fadeElement.push(playIcon);

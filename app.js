@@ -179,4 +179,4 @@ function customCursor(){
 
 }
 
-customCursor()
+onmousemove = () => customCursor()
